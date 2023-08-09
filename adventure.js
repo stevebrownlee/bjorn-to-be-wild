@@ -424,9 +424,9 @@ const totalTrailMiles = (trails) => {
 }
 
 // Get the shortest of all trails
-const shortestTrail = (trails) => {
+const shortyTrail = (trailArray) => {
     let shortest = 0
-    for (const trail of trails) {
+    for (const trail of trailArray) {
         if(trail.length < shortest) {
             shortest = trail.length
         }
@@ -435,6 +435,17 @@ const shortestTrail = (trails) => {
     return shortest
 }
 
+// Get the longest of all trails
+const longTrail = (allTrails) => {
+    let longest = 0
+    for (const trail of allTrails) {
+        if(trail.length >> longest) {
+            longest = trail.length
+        }
+    }
+
+    return longest
+}
 
 
 console.log(`
@@ -457,38 +468,11 @@ console.log(`
 console.log("***************************************************")
 console.log("*****              T R A I L S                *****")
 console.log("***************************************************")
-
 const trailTotal = totalTrailMiles(trails)
 console.log(`We service ${trailTotal} miles of wilderness trails across the US`)
 
 const shortTrail = shortestTrail(trails)
 console.log(`The shortest trail is ${shortTrail} kilometers`)
 
-
-
-console.log(`The shortest trail is ${trails.sort((c, n) => c.length < n.length ? -1 : 1)[0].length} kilometers`)
-console.log(`The longest trail is ${trails.sort((c, n) => c.length > n.length ? -1 : 1)[0].length} kilometers`)
-console.log(`The least expensive trails are \n\t${trails.filter(t => t.price.length === 1).map(t => t.trailName).join("\n\t")}`)
-console.log(`The most expensive trails are \n\t${trails.filter(t => t.price.length >= 4).map(t => t.trailName).join("\n\t")}`)
-
-console.log("\n\n")
-
-console.log("***************************************************")
-console.log("*****              R I V E R S                *****")
-console.log("***************************************************")
-const riverTotal = totalTrailMiles(rivers)
-console.log(`We offer expert guidance on ${riverTotal} miles of scenic rivers across the US`)
-console.log(`The shortest river tour is ${rivers.sort((c, n) => c.length < n.length ? -1 : 1)[0].length} kilometers`)
-console.log(`The longest river tour is ${rivers.sort((c, n) => c.length > n.length ? -1 : 1)[0].length} kilometers`)
-console.log(`The least expensive river tours are \n\t${rivers.filter(t => t.price.length === 1).map(t => t.river).join("\n\t")}`)
-console.log(`The most expensive river tours are \n\t${rivers.filter(t => t.price.length >= 4).map(t => t.river).join("\n\t")}`)
-
-for (const trail of trails) {
-    console.log(`${trail.trailName} starts at [${trail.latitude}, ${trail.longitude}] and is ${trail.length} miles long. The highlighted plant for the trip is ${trail.plantHighlight}`)
-}
-
-for (const river of rivers) {
-    console.log(`${river.river} starts at [${river.latitude}, ${river.longitude}] and is ${river.length} miles long. The unique fish for the trip is ${river.uniqueFish}`)
-}
-
-
+const longest = longTrail(trails)
+console.log(`The longest trail is ${longest} kilometers`)
